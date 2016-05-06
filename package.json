@@ -1,0 +1,28 @@
+{
+  "name": "angular-virtual-repeat",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/klajd/angular-virtual-repeat.git"
+  },
+  "keywords": [
+    "angula",
+    "ng-repeat",
+    "repeat",
+    "data",
+    "virtual",
+    "lazy",
+    "viewport"
+  ],
+  "author": "Klajd Diko",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/klajd/angular-virtual-repeat/issues"
+  },
+  "homepage": "https://github.com/klajd/angular-virtual-repeat#readme"
+}
