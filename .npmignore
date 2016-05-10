@@ -1,0 +1,6 @@
+# Ignore All except the following
+*
+!dist/*
+!LICENCE
+!package.json
+!README.MD

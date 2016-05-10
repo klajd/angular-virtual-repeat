@@ -25,5 +25,8 @@
   "bugs": {
     "url": "https://github.com/klajd/angular-virtual-repeat/issues"
   },
-  "homepage": "https://github.com/klajd/angular-virtual-repeat#readme"
+  "homepage": "https://github.com/klajd/angular-virtual-repeat#readme",
+  "dependencies": {
+    "angular": "^1.5.5"
+  }
 }
