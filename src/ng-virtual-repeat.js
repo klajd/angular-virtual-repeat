@@ -1,15 +1,18 @@
 (function () {
     'use strict';
-    
+
     angular
         .module('ngVirtualRepeat')
-        .directive('ngVirtualRepeat',NgVirtualRepeatDirective);
+        .directive('ngVirtualRepeat', NgVirtualRepeatDirective);
 
     NgVirtualRepeatDirective.$inject = ['$log', '$rootElement'];
     function NgVirtualRepeatDirective($log, $rootElement) {
         return {
             restrict: 'A',
-            link: link
+            link: link,
+            scope: {
+                data: '=ngVirtualRepeat'
+            }
         };
 
         function link(scope, element, attrs) {
@@ -21,9 +24,9 @@
             var scrollTop = 0;
             var scrollLeft = 0;
             var rendered = [];
-            var data = scope[attrs.ngVirtualRepeat];
+            var data = scope.data;
             var matrix = {
-                data: scope[attrs.ngVirtualRepeat],
+                data: data,
                 rows: {
                     // rendered: undefined,
                     total: data.length,
