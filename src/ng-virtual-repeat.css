@@ -1,29 +1,29 @@
- .ng-virtual-repeat-container {
-     /*height: 100%;*/
-     width: 100%;
-     overflow-x: scroll;
-     overflow-y: scroll;
-     position: absolute;
-     /*top: 100%;
+.ng-virtual-repeat-container {
+    /*height: 100%;*/
+    width: 100%;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    position: absolute;
+    /*top: 100%;
      right: 0;*/
- }
- 
- .ng-virtual-repeat-container-horizontal {
-     height: 1em;
-     width: 100%;
-     overflow-x: scroll;
-     overflow-y: hidden;
-     position: absolute;
-     /*top: 100%;
+}
+
+.ng-virtual-repeat-container-horizontal {
+    height: 1em;
+    width: 100%;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    position: absolute;
+    /*top: 100%;
      right: 0;*/
- }
- 
- .ng-virtual-repeat-container-vertical {
-     height: 100%;
-     width: 1em;
-     overflow-x: hidden;
-     overflow-y: sc;
-     position: absolute;
-     /*top: 100%;
+}
+
+.ng-virtual-repeat-container-vertical {
+    height: 100%;
+    width: 1em;
+    overflow-x: hidden;
+    overflow-y: sc;
+    position: absolute;
+    /*top: 100%;
      right: 0;*/
- } }
+} }
