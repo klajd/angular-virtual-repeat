@@ -1,0 +1,34 @@
+<!doctype html>
+<html ng-app="app">
+
+<head>
+    <link href="/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="/bower_components/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
+
+    <!-- SCRIPTS -->
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+
+    <!-- COMPONENTS -->
+    <script src="/src/module.js"></script>
+    <script src="/src/ng-virtual-repeat.js"></script>
+    <link href="/src/ng-virtual-repeat.css" rel="stylesheet" type="text/css" />
+
+    <!-- DEMO -->
+    <link href="app.css" rel="stylesheet" type="text/css" />
+    <script src="app.js"></script>
+</head>
+
+<body ng-controller="AppController as vm">
+
+    <uib-tabset active="vm.active">
+        <uib-tab index="$index" ng-repeat="tab in vm.tabs" heading="{{tab.title}}">
+            <div ng-if="vm.active === $index">
+                <ng-include src="tab.template"></ng-include>
+            </div>
+        </uib-tab>
+    </uib-tabset>
+
+</body>
+
+</html>

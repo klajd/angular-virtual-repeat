@@ -1,0 +1,8 @@
+{
+  "name": "angular-virtual-repeat",
+  "version": false,
+  "dependencies": {},
+  "ambientDependencies": {
+    "angular": "registry:dt/angular#1.5.0+20160509150441"
+  }
+}

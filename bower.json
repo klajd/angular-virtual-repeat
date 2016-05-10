@@ -1,0 +1,35 @@
+{
+  "name": "angular-virtual-repeat",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Klajd Diko"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "angula",
+    "ng-repeat",
+    "ng-virtual-repeat",
+    "repeat",
+    "data",
+    "virtual",
+    "lazy",
+    "viewport"
+  ],
+  "homepage": "https://github.com/klajd/angular-virtual-repeat",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.5"
+  },
+  "devDependencies": {
+    "angular-bootstrap": "^1.3.2",
+    "bootstrap": "^3.3.6",
+    "font-awesome": "^4.6.2"
+  }
+}
