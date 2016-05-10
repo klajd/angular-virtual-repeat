@@ -18,8 +18,11 @@
         ];
         vm.grid = generateGrid(1000, 1000);
         vm.$onInit = init;
+        vm.generateGrid = generateGrid;
 
         function init() {
+            vm.rows = 1000;
+            vm.cols  = 1000;
         }
 
         function generateGrid(size, cols) {

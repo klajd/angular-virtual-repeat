@@ -1,14 +1,22 @@
 <div class="row">
+    <div class="col-md-5" style="padding-left:50px;">
+        <div class="input-group input-group-sm">
+            <input type="text" class="form-control" ng-model="vm.rows" placeholder="rows">
+            <span class="input-group-addon">X</span>
+            <input type="text" class="form-control" ng-model="vm.cols" placeholder="cols">
+            <span class="input-group-btn"> 
+                <button class="btn btn-default" ng-click="vm.generateGrid(vm.rows, vm.cols)">Generate</button>
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="row">
     <div class="col-md-12" style="padding:50px;">
 
         <div class="viewport ng-virtual-repeat-container" style="width: 800px;height:400px">
             <div>
                 <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th ng-repeat="header in vm.grid[0]" ng-bind="$index"></th>
-                        </tr>
-                    </thead>
                     <tbody ng-virtual-repeat="vm.grid">
                     </tbody>
                 </table>
