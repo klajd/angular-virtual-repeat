@@ -3,6 +3,7 @@
 
     angular.module('app', [
         'ui.bootstrap',
+        'ngVirtualRepeat'
     ]);
 
     angular.module('app')
@@ -15,10 +16,11 @@
         vm.tabs = [
             { title: 'Home', template: 'grid.html' }
         ];
+        vm.grid = generateGrid(1000, 1000);
+        vm.$onInit = init;
 
-        vm.$onInit = function () {
-            vm.grid = generateGrid(1000, 1000);
-        };
+        function init() {
+        }
 
         function generateGrid(size, cols) {
             var res = [];

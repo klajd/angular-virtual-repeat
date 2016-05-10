@@ -3,7 +3,7 @@
     
     angular
         .module('ngVirtualRepeat')
-        .directive(NgVirtualRepeatDirective);
+        .directive('ngVirtualRepeat',NgVirtualRepeatDirective);
 
     NgVirtualRepeatDirective.$inject = ['$log', '$rootElement'];
     function NgVirtualRepeatDirective($log, $rootElement) {
