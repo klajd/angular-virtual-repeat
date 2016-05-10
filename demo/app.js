@@ -11,16 +11,28 @@
     AppController.$inject = ['$scope'];
     function AppController(scope) {
         var vm = this;
-        vm.active = 2;
+        vm.active = 0;
         vm.tabs = [
-            { title: 'Validate', template: 'validate-simple.html' },
-            { title: 'Validate Special', template: 'validate-special.html' },
-            { title: 'Validate Custom', template: 'validate-custom.html' }
+            { title: 'Home', template: 'grid.html' }
         ];
 
         vm.$onInit = function () {
-
+            vm.grid = generateGrid(1000, 1000);
         };
+
+        function generateGrid(size, cols) {
+            var res = [];
+
+            for (var i = 0; i < size; i++) {
+                var row = [];
+                for (var j = 0; j < cols; j++) {
+                    row.push('[' + i + ', ' + j + ']');
+                    // row.push((Math.random() * 100 + 50));
+                }
+                res.push(row);
+            }
+            return res;
+        }
 
     }
 
