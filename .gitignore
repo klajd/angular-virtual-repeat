@@ -8,3 +8,6 @@ npm-debug.log
 
 # editor
 .vscode
+
+# temp
+*.orig.js
