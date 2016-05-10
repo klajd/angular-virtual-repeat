@@ -1,5 +1,16 @@
 .viewport {
     white-space: nowrap;
-    max-height: 300px;
+    max-height: 1000px;
     border: 1px solid blue;
+}
+
+table tr td {
+    height: 40px;
+    min-width: 70px;
+    max-width: 70px;
+    width: 70px;
+}
+
+.table {
+    width: unset;
 }

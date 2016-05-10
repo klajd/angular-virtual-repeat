@@ -1,5 +1,6 @@
 {
   "name": "angular-virtual-repeat",
+  "version" : "0.1.0",
   "description": "",
   "main": "index.js",
   "authors": [
