@@ -1,8 +1,8 @@
 {
   "name": "angular-virtual-repeat",
   "version": "0.1.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Bind only visible data to html using viewport.",
+  "main": "/dist/ng-virtual-repeat.js",
   "scripts": {
     "start": "http-server ."
   },

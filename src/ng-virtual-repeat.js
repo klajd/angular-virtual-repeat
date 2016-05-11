@@ -52,8 +52,8 @@
 
                 element.empty();
 
-                var startRow = startCell[0]
-                var StartCol = startCell[1]
+                var startRow = startCell[0];
+                var StartCol = startCell[1];
                 var endRow = startCell[0] + visibleRows + 1;
                 var endCol = startCell[1] + visibleCols + 1;
                 var totalRows = matrix.length;
@@ -64,14 +64,14 @@
                 element.append(generateTemplate(matrix, startCell, [endRow, endCol]));
 
                 container.css({ 'padding-top': startRow * scope.cellHeight + 'px' });
-                container.css({ 'height': (totalRows - visibleRows) * scope.cellHeight + 'px' });
+                container.css({ 'height': totalRows * scope.cellHeight + 'px' });
                 container.css({ 'padding-left': StartCol * scope.cellWidth + 'px' });
-                container.css({ 'width': (totalCols - visibleCols) * scope.cellWidth + 'px' });
+                container.css({ 'width': totalCols * scope.cellWidth + 'px' });
             }
         }
 
         /**
-         * Generate table html template from matrix and the diplay port
+         * Generate table html template from matrix in the diplay port
          * @param {Object} matrix - the matrix handling data.
          * @param {Array} start - the top left koordinate of matrix where begin display
          * @param {Array} end - the bottom right koordinate of the matrix where ends display
@@ -84,26 +84,15 @@
                 for (var c = start[1]; c < end[1]; c++) {
                     trElement += ['<td>', matrix[r][c], '</td>'].join('');
                 }
-                template += trElement;
+                template += trElement + '</tr>';
             }
             return template;
-        }
-        
-        // TODO remove
-        function generateJqTemplate(){
-            // for (var r = start; r < end; r++) {
-            //     var trElement = angular.element('<tr>');
-            //     for (var c = startCol; c < endCol; c++) {
-            //         trElement.append(['<td>', matrix.data[r][c], '</td>'].join(''));
-            //     }
-            //     element.append(trElement);
-            // }
         }
 
         /**
          * Find parent element by selector.
          * @param {jqElement} element - current element.
-         * @param {string} selector - class selector.
+         * @param {String} selector - class selector.
          * @returns {jqElement} - the parent element found or undefined if none.
          */
         function findParent(element, selector) {
