@@ -1,11 +1,11 @@
 <div class="row">
     <div class="col-md-5" style="padding-left:50px;">
         <div class="input-group input-group-sm">
-            <input type="text" class="form-control" ng-model="vm.rows" placeholder="rows">
+            <input type="text" class="form-control" ng-model="vm.rows" placeholder="rows" maxlength="4">
             <span class="input-group-addon">X</span>
-            <input type="text" class="form-control" ng-model="vm.cols" placeholder="cols">
+            <input type="text" class="form-control" ng-model="vm.cols" placeholder="cols" maxlength="4">
             <span class="input-group-btn"> 
-                <button class="btn btn-default" ng-click="vm.generateGrid(vm.rows, vm.cols)">Generate</button>
+                <button class="btn btn-default" ng-click="vm.generateGrid()">Generate</button>
             </span>
         </div>
     </div>
@@ -21,6 +21,5 @@
                 </table>
             </div>
         </div>
-
     </div>
 </div>

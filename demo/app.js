@@ -16,13 +16,19 @@
         vm.tabs = [
             { title: 'Home', template: 'grid.html' }
         ];
+        vm.rows = 1000;
+        vm.cols = 1000;
         vm.grid = generateGrid(1000, 1000);
         vm.$onInit = init;
-        vm.generateGrid = generateGrid;
+        vm.generateGrid = generateGridData;
 
-        function init() {
-            vm.rows = 1000;
-            vm.cols  = 1000;
+        function generateGridData() {
+            vm.rows = parseInt(vm.rows);
+            vm.cols = parseInt(vm.cols);
+            if (vm.rows * vm.cols > 1000000)
+                alert('Cant process a matrix bigger than 1,000,000 cells :(.');
+
+            vm.grid = generateGrid(vm.rows, vm.cols);
         }
 
         function generateGrid(size, cols) {
