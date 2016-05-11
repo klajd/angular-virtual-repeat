@@ -1,25 +1,45 @@
-<div class="row">
-    <div class="col-md-5" style="padding-left:50px;">
-        <div class="input-group input-group-sm">
-            <input type="text" class="form-control" ng-model="vm.rows" placeholder="rows" maxlength="4">
-            <span class="input-group-addon">X</span>
-            <input type="text" class="form-control" ng-model="vm.cols" placeholder="cols" maxlength="4">
-            <span class="input-group-btn"> 
-                <button class="btn btn-default" ng-click="vm.generateGrid()">Generate</button>
-            </span>
+<form name="gridOptionsForm" ng-submit="vm.apply()" ng-init="mo={updateOn: 'submit'}">
+    <div class="row">
+        <div class="form-group col-md-2">
+            <label for="">Total Rows</label>
+            <input type="number" class="form-control" ng-model="vm.rows" placeholder="rows" ng-model-options="mo">
+        </div>
+        <div class="form-group col-md-2">
+            <label for="">Total Cols</label>
+            <input type="number" class="form-control" ng-model="vm.cols" placeholder="cols" ng-model-options="mo">
+        </div>
+        <div class="form-group col-md-2">
+            <label for="">Container Width </label>
+            <input type="number" class="form-control" ng-model="vm.styles.width" placeholder="width" pixel ng-model-options="mo">
+        </div>
+        <div class="form-group col-md-2">
+            <label for="">Container Height</label>
+            <input type="number" class="form-control" ng-model="vm.styles.height" placeholder="height" pixel ng-model-options="mo">
+        </div>
+        <div class="form-group col-md-2">
+            <label for="">Cell Width </label>
+            <input type="number" class="form-control" ng-model="vm.cellStyle.width" placeholder="cell width" ng-model-options="mo">
+        </div>
+        <div class="form-group col-md-2">
+            <label for="">Cell Height</label>
+            <input type="number" class="form-control" ng-model="vm.cellStyle.height" placeholder="cell height" ng-model-options="mo">
+        </div>
+        <div class="form-group col-md-12">
+            <button type="submit" class="btn btn-primary" ng-click="vm.apply()">Apply</button>
+            <strong class="text-info"> {{vm.cols * vm.rows | number}} total cell generated</strong>
         </div>
     </div>
-</div>
 
-<div class="row">
-    <div class="col-md-12" style="padding:50px;">
-        <div class="viewport ng-virtual-repeat-container" style="width: 1200px;height:1000px">
-            <div>
-                <table class="table table-striped">
-                    <tbody ng-virtual-repeat="vm.grid">
-                    </tbody>
-                </table>
+    <div class="row">
+        <div class="col-md-12" style="padding:50px;">
+            <div class="viewport ng-virtual-repeat-container" ng-style="vm.styles">
+                <div>
+                    <table class="table table-striped">
+                        <tbody ng-virtual-repeat="vm.grid" cell-width="vm.cellStyle.width" cell-height="vm.cellStyle.height">
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
+    </div>

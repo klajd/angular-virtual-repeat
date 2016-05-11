@@ -45,3 +45,10 @@ vm.matrix = [
 
     gulp build
     
+
+## Note
+This implementation lack of posibility to add header in the table.  
+But a common solution is to add headers in separate div and simply sync with scroll events if needed.
+
+## Author 
+You are wellcome to add additional feature and make pull request :smile:
