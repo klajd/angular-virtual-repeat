@@ -23,90 +23,75 @@
             var container = viewport.find('div').eq(0);
             var scrollTop = 0;
             var scrollLeft = 0;
-
+            var visibleRows = 0;
+            var visibleCols = 0;
             scope.watchSize = scope.watchSize === undefined ? true : false;
             scope.cellHeight = parseInt(scope.cellHeight) || 40;
             scope.cellWidth = parseInt(scope.cellWidth) || 70;
-            // TODO make possible to watch in case of viewport resize
-            var visibleRows = Math.ceil(viewport[0].clientHeight / scope.cellHeight);
-            var visibleCols = Math.ceil(viewport[0].clientWidth / scope.cellWidth);
+            viewport.css({
+                overflow: 'scroll',
+                width: '100%',
+                height: '600px'
+            });
 
-            scope.$watch('matrix', onMatrixChange);
-            viewport.bind('scroll', onViewportScroll);
-
-            if (scope.cellWidth || scope.cellHeight)
-                scope.$watchGroup(['cellHeight', 'cellWidth'], onCellSizeChange);
-
-            if (scope.watchSize)
-                scope.$watch(getViewPortSize, onSizeChange);
-
-
-            function onMatrixChange(newValue, oldValue) {
-                if (newValue === undefined) {
+            scope.$watch('matrix', function onMatrixChange(newValue, oldValue) {
+                if (newValue === undefined)
                     element.empty();
-                } else {
-                    render(scope.matrix, [0, 0]);
-                }
-            }
+                else
+                    render();
+            });
 
-            function onCellSizeChange(newValue, oldValue) {
-                visibleRows = Math.ceil(viewport[0].clientHeight / scope.cellHeight);
-                visibleCols = Math.ceil(viewport[0].clientWidth / scope.cellWidth);
-                var startCell = [
-                    Math.floor(scrollTop / scope.cellHeight),
-                    Math.floor(scrollLeft / scope.cellWidth)
-                ];
-
-                render(scope.matrix, startCell);
-            }
-
-            function getViewPortSize() {
-                return viewport[0].clientHeight + viewport[0].clientWidth;
-            }
-
-            function onSizeChange() {
-                visibleRows = Math.ceil(viewport[0].clientHeight / scope.cellHeight);
-                visibleCols = Math.ceil(viewport[0].clientWidth / scope.cellWidth);
-                var startCell = [
-                    Math.floor(scrollTop / scope.cellHeight),
-                    Math.floor(scrollLeft / scope.cellWidth)
-                ];
-
-                render(scope.matrix, startCell);
-            }
-
-            function onViewportScroll(event) {
+            viewport.bind('scroll', function onViewportScroll(event) {
                 scrollTop = event.target.scrollTop;
                 scrollLeft = event.target.scrollLeft;
-                var startCell = [
-                    Math.floor(event.target.scrollTop / scope.cellHeight),
-                    Math.floor(event.target.scrollLeft / scope.cellWidth),
-                ];
 
-                render(scope.matrix, startCell);
-            }
+                render(true);
+            });
 
-            function render(matrix, startCell) {
+            if (scope.cellWidth || scope.cellHeight)
+                scope.$watchGroup(['cellHeight', 'cellWidth'], function onCellSizeChange(newValue, oldValue) {
+                    render();
+                });
+
+            if (scope.watchSize)
+                scope.$watch(function getViewPortSize() {
+                    return viewport[0].clientHeight + viewport[0].clientWidth;
+                }, function onSizeChange() {
+                    render();
+                });
+
+            /**
+             * Calculate parameters and render the template to the view.
+             * @param {Boolean} isScroll - prevent visibleRows and visibleCols calculation
+             */
+            function render(isScroll) {
+                var matrix = scope.matrix;
+
                 if (!matrix) return;
 
-                console.debug('is renering ...');
                 element.empty();
 
-                var startRow = startCell[0];
-                var StartCol = startCell[1];
-                var endRow = startCell[0] + visibleRows + 1;
-                var endCol = startCell[1] + visibleCols + 1;
+                if (!isScroll) {
+                    visibleRows = Math.ceil(viewport[0].clientHeight / scope.cellHeight);
+                    visibleCols = Math.ceil(viewport[0].clientWidth / scope.cellWidth);
+                }
+
+                var startRow = Math.floor(scrollTop / scope.cellHeight);
+                var StartCol = Math.floor(scrollLeft / scope.cellWidth);
+                var endRow = startRow + visibleRows + 1;
+                var endCol = StartCol + visibleCols + 1;
                 var totalRows = matrix.length;
                 var totalCols = matrix[0].length;
                 if (endRow > totalRows) endRow = totalRows;
                 if (endCol > totalCols) endCol = totalCols;
 
-                element.append(generateTemplate(matrix, startCell, [endRow, endCol]));
+                element.append(generateTemplate(matrix, [startRow, StartCol], [endRow, endCol]));
 
                 container.css({ 'padding-top': startRow * scope.cellHeight + 'px' });
                 container.css({ 'height': totalRows * scope.cellHeight + 'px' });
                 container.css({ 'padding-left': StartCol * scope.cellWidth + 'px' });
                 container.css({ 'width': totalCols * scope.cellWidth + 'px' });
+                //console.debug('renderd', { paddingTop: startRow * scope.cellHeight, caller: arguments.callee.caller.name });
             }
         }
 
@@ -122,7 +107,7 @@
             for (var r = start[0]; r < end[0]; r++) {
                 var trElement = '<tr>';
                 for (var c = start[1]; c < end[1]; c++) {
-                    trElement += ['<td>', matrix[r][c] , '</td>'].join('');
+                    trElement += ['<td>', matrix[r][c], '</td>'].join('');
                 }
                 template += trElement + '</tr>';
             }
