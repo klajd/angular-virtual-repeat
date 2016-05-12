@@ -35,9 +35,7 @@ vm.matrix = [
 
 - `ng-virtual-repeat-container` : the class of the parent div to serve as a viewport default css: overflow: scroll, width: 100%, height: 600px
 - `ng-virtual-repeat`   : matrix object, the directive itself
-- `cell-height`         : number, default: 40px, the td cell height. needed to calculate visible rows
-- `cell-width`          : number, default: 70px , the td cell width, needed to calculate visible colums
-- `watch-size`          : bool, default: true, watch for viewport resize
+- `watch-size`          : bool, default: false, watch for viewport resize if source data are immutable
 
 ## Demo 
 [Live Demo](http://klajd.github.io/angular-virtual-repeat) or clone and run.

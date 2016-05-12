@@ -29,6 +29,7 @@
         };
         vm.grid = undefined;
         vm.apply = apply;
+        vm.getRenderedCellCount = getRenderedCellCount;
         vm.$onInit = init;
 
         function init() {
@@ -43,6 +44,10 @@
                 return;
             }
             vm.grid = generateGrid(vm.rows, vm.cols);
+        }
+
+        function getRenderedCellCount() {
+            return (Math.floor(vm.styles.height.replace('px', '') / vm.cellStyle.height) + 1) * (Math.floor(vm.styles.width.replace('px', '') / vm.cellStyle.width) + 1);
         }
 
         function generateGrid(size, cols) {
@@ -74,13 +79,13 @@
 
             ngModel.$formatters.push(function (viewmodel) {
                 if (!viewmodel) return viewmodel;
-                
+
                 return parseInt(viewmodel.toString().replace('px', ''));
             });
 
             ngModel.$parsers.push(function (model) {
                 if (!model) return model;
-                
+
                 return model + 'px';
             });
         }

@@ -11,10 +11,7 @@
             restrict: 'A',
             link: link,
             scope: {
-                matrix: '=ngVirtualRepeat',
-                cellHeight: '@?',
-                cellWidth: '@?',
-                watchSize: '@?'
+                matrix: '=ngVirtualRepeat'
             }
         };
 
@@ -25,14 +22,16 @@
             var scrollLeft = 0;
             var visibleRows = 0;
             var visibleCols = 0;
-            scope.watchSize = scope.watchSize === undefined ? true : false;
-            scope.cellHeight = parseInt(scope.cellHeight) || 40;
-            scope.cellWidth = parseInt(scope.cellWidth) || 70;
+            var cellWidth = 0;
+            var cellHeight = 0;
+            var watchSize = attrs.watchSize === undefined ? false : true;
             viewport.css({
                 overflow: 'scroll',
                 width: '100%',
                 height: '600px'
             });
+
+            calculateCellSize();
 
             scope.$watch('matrix', function onMatrixChange(newValue, oldValue) {
                 if (newValue === undefined)
@@ -45,39 +44,39 @@
                 scrollTop = event.target.scrollTop;
                 scrollLeft = event.target.scrollLeft;
 
-                render(true);
+                render();
             });
 
-            if (scope.cellWidth || scope.cellHeight)
-                scope.$watchGroup(['cellHeight', 'cellWidth'], function onCellSizeChange(newValue, oldValue) {
-                    render();
-                });
-
-            if (scope.watchSize)
+            if (watchSize)
                 scope.$watch(function getViewPortSize() {
                     return viewport[0].clientHeight + viewport[0].clientWidth;
                 }, function onSizeChange() {
                     render();
                 });
+         
+            /**
+             * Calculate cell size by faking a dummy td.
+             */
+            function calculateCellSize() {
+                var dummyCell = element.append('<tr><td></td></tr>').find('td')[0];
+                cellWidth = dummyCell.offsetWidth;
+                cellHeight = dummyCell.offsetHeight;
+            }
 
             /**
              * Calculate parameters and render the template to the view.
-             * @param {Boolean} isScroll - prevent visibleRows and visibleCols calculation
              */
-            function render(isScroll) {
+            function render() {
                 var matrix = scope.matrix;
 
                 if (!matrix) return;
 
                 element.empty();
+                visibleRows = Math.ceil(viewport[0].clientHeight / cellHeight);
+                visibleCols = Math.ceil(viewport[0].clientWidth / cellWidth);
 
-                if (!isScroll) {
-                    visibleRows = Math.ceil(viewport[0].clientHeight / scope.cellHeight);
-                    visibleCols = Math.ceil(viewport[0].clientWidth / scope.cellWidth);
-                }
-
-                var startRow = Math.floor(scrollTop / scope.cellHeight);
-                var StartCol = Math.floor(scrollLeft / scope.cellWidth);
+                var startRow = Math.floor(scrollTop / cellHeight);
+                var StartCol = Math.floor(scrollLeft / cellWidth);
                 var endRow = startRow + visibleRows + 1;
                 var endCol = StartCol + visibleCols + 1;
                 var totalRows = matrix.length;
@@ -87,11 +86,10 @@
 
                 element.append(generateTemplate(matrix, [startRow, StartCol], [endRow, endCol]));
 
-                container.css({ 'padding-top': startRow * scope.cellHeight + 'px' });
-                container.css({ 'height': totalRows * scope.cellHeight + 'px' });
-                container.css({ 'padding-left': StartCol * scope.cellWidth + 'px' });
-                container.css({ 'width': totalCols * scope.cellWidth + 'px' });
-                //console.debug('renderd', { paddingTop: startRow * scope.cellHeight, caller: arguments.callee.caller.name });
+                container.css({ 'padding-top': startRow * cellHeight + 'px' });
+                container.css({ 'height': totalRows * cellHeight + 'px' });
+                container.css({ 'padding-left': StartCol * cellWidth + 'px' });
+                container.css({ 'width': totalCols * cellWidth + 'px' });
             }
         }
 
