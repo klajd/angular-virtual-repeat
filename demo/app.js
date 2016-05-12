@@ -42,12 +42,6 @@
                 alert('Cant process a matrix bigger than 1,000,000 cells :(.');
                 return;
             }
-
-            vm.containerStyle = {
-                width: vm.styles.width + 'px',
-                height: vm.styles.height + 'px'
-            };
-
             vm.grid = generateGrid(vm.rows, vm.cols);
         }
 

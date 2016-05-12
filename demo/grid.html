@@ -32,14 +32,14 @@
 
     <div class="row">
         <div class="col-md-12" style="padding:50px;">
-            <div class="viewport ng-virtual-repeat-container" ng-style="vm.styles">
+            <div class="viewport ng-virtual-repeat-container" ng-style="vm.styles" style="height: 600px;">
                 <div>
                     <table class="table table-striped">
-                        <tbody ng-virtual-repeat="vm.grid" cell-width="vm.cellStyle.width" cell-height="vm.cellStyle.height">
+                        <tbody ng-virtual-repeat="vm.grid" cell-width="{{vm.cellStyle.width}}" cell-height="{{vm.cellStyle.height}}">
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-    </div>
+</form>
