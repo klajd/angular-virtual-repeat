@@ -12,6 +12,12 @@ The directive generates table element by calculating the viewport named **ng-vir
 The cell-height and cell-width attributes are optional.
 
 ```javascript
+angular.module('app', [
+    'ngVirtualRepeat'
+]);
+```
+
+```javascript
 vm.matrix = [
   ["0, 0", "0, 1", "0, 2" ...]  
   ["1, 0", "1, 1", "1, 2" ...]  

@@ -1,3 +1,9 @@
+/*!
+ * angular-virtual-repeat
+ * https://github.com/klajd/angular-virtual-repeat
+ * Version: 0.1.2 - 2016-05-12
+ * License: MIT
+ */
 angular.module('ngVirtualRepeat', []);
 
 (function () {
