@@ -47,7 +47,7 @@
         }
 
         function getRenderedCellCount() {
-            return (Math.floor(vm.styles.height.replace('px', '') / vm.cellStyle.height) + 1) * (Math.floor(vm.styles.width.replace('px', '') / vm.cellStyle.width) + 1);
+            return document.querySelectorAll(".ng-virtual-repeat-container table tr td").length;
         }
 
         function generateGrid(size, cols) {
