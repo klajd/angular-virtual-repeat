@@ -1,18 +1,20 @@
-.viewport {
+.ng-virtual-repeat-container {
     white-space: nowrap;
-    max-height: 1000px;
     border: 1px solid blue;
 }
 
-table tr td {
+table > tbody > tr > td {
     height: 40px;
+    width: 70px;
     min-width: 70px;
     max-width: 70px;
-    width: 70px;
 }
 
 .table {
     width: unset;
+    border: 0;
+    margin: 0;
+    padding: 0;
 }
 
 .main {
