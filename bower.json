@@ -1,6 +1,6 @@
 {
   "name": "angular-virtual-repeat",
-  "version" : "0.1.2",
+  "version": "0.1.2",
   "description": "Bind only visible data to html using viewport.",
   "main": "dist/ng-virtual-repeat.js",
   "authors": [
@@ -19,11 +19,11 @@
   ],
   "homepage": "https://github.com/klajd/angular-virtual-repeat",
   "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
+    "*",
+    "!dist/*",
+    "!LICENCE",
+    "!package.json",
+    "!README.MD"
   ],
   "dependencies": {
     "angular": "^1.5.5"
