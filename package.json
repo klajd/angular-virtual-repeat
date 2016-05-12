@@ -5,7 +5,7 @@
   "main": "/dist/ng-virtual-repeat.js",
   "scripts": {
     "start": "http-server .",
-    "build" : "gulp build"
+    "build": "gulp build"
   },
   "repository": {
     "type": "git",
@@ -34,7 +34,10 @@
     "del": "^2.2.0",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.0",
+    "gulp-if": "^2.0.1",
     "gulp-rename": "^1.2.2",
-    "gulp-uglify": "^1.5.3"
+    "gulp-strip-debug": "^1.1.0",
+    "gulp-uglify": "^1.5.3",
+    "yargs": "^4.7.0"
   }
 }
