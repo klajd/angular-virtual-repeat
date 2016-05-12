@@ -14,3 +14,7 @@ table tr td {
 .table {
     width: unset;
 }
+
+.main {
+  margin: auto 5% ;   
+}

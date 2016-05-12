@@ -1,4 +1,5 @@
-<form name="gridOptionsForm" ng-submit="vm.apply()" ng-init="mo={updateOn: 'submit'}">
+<form name="gridOptionsForm" ng-submit="vm.apply()" ng-init="mo={updateOn: 'submit'}" class="main">
+    
     <div class="row">
         <div class="form-group col-md-2">
             <label for="">Total Rows</label>
@@ -31,8 +32,8 @@
     </div>
 
     <div class="row">
-        <div class="col-md-12" style="padding:50px;">
-            <div class="viewport ng-virtual-repeat-container" ng-style="vm.styles" style="height: 600px;">
+        <div class="col-md-12">
+            <div class="viewport ng-virtual-repeat-container" ng-style="vm.styles">
                 <div>
                     <table class="table table-striped">
                         <tbody ng-virtual-repeat="vm.grid" cell-width="{{vm.cellStyle.width}}" cell-height="{{vm.cellStyle.height}}">
