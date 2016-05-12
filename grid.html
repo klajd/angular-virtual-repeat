@@ -1,0 +1,47 @@
+<form name="gridOptionsForm" ng-submit="vm.apply()" ng-init="mo={updateOn: 'submit'}" class="main">
+    
+    <div class="row">
+        <div class="form-group col-md-2">
+            <label for="">Total Rows</label>
+            <input type="number" class="form-control" ng-model="vm.rows" placeholder="rows" ng-model-options="mo">
+        </div>
+        <div class="form-group col-md-2">
+            <label for="">Total Cols</label>
+            <input type="number" class="form-control" ng-model="vm.cols" placeholder="cols" ng-model-options="mo">
+        </div>
+        <div class="form-group col-md-2">
+            <label for="">Container Width </label>
+            <input type="number" class="form-control" ng-model="vm.styles.width" placeholder="width" pixel ng-model-options="mo">
+        </div>
+        <div class="form-group col-md-2">
+            <label for="">Container Height</label>
+            <input type="number" class="form-control" ng-model="vm.styles.height" placeholder="height" pixel ng-model-options="mo">
+        </div>
+        <div class="form-group col-md-2">
+            <label for="">Cell Width </label>
+            <input type="number" class="form-control" ng-model="vm.cellStyle.width" placeholder="cell width" ng-model-options="mo" disabled>
+        </div>
+        <div class="form-group col-md-2">
+            <label for="">Cell Height</label>
+            <input type="number" class="form-control" ng-model="vm.cellStyle.height" placeholder="cell height" ng-model-options="mo" disabled>
+        </div>
+        <div class="form-group col-md-12">
+            <button type="submit" class="btn btn-primary" ng-click="vm.apply()">Apply</button>
+            <strong class="text-info"> {{ vm.cols * vm.rows | number}} total cell</strong> | 
+            <strong class="text-success"> {{ vm.getRenderedCellCount() | number }} total cell rendered</strong>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="ng-virtual-repeat-container" ng-style="vm.styles">
+                <div>
+                    <table class="table table-striped">
+                        <tbody ng-virtual-repeat="vm.grid">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
