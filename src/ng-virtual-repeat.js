@@ -12,44 +12,84 @@
             link: link,
             scope: {
                 matrix: '=ngVirtualRepeat',
-                cellHeight: '@',
-                cellWidth: '@'
+                cellHeight: '@?',
+                cellWidth: '@?',
+                watchSize: '@?'
             }
         };
 
         function link(scope, element, attrs) {
             var viewport = findParent(element, 'ng-virtual-repeat-container');
             var container = viewport.find('div').eq(0);
+            var scrollTop = 0;
+            var scrollLeft = 0;
 
+            scope.watchSize = scope.watchSize === undefined ? true : false;
             scope.cellHeight = parseInt(scope.cellHeight) || 40;
             scope.cellWidth = parseInt(scope.cellWidth) || 70;
             // TODO make possible to watch in case of viewport resize
             var visibleRows = Math.ceil(viewport[0].clientHeight / scope.cellHeight);
             var visibleCols = Math.ceil(viewport[0].clientWidth / scope.cellWidth);
 
-            scope.$watch('matrix', function (newValue, oldValue) {
-                // visibleRows = Math.ceil(viewport[0].clientHeight / scope.cellHeight);
-                // visibleCols = Math.ceil(viewport[0].clientWidth / scope.cellWidth);
+            scope.$watch('matrix', onMatrixChange);
+            viewport.bind('scroll', onViewportScroll);
+
+            if (scope.cellWidth || scope.cellHeight)
+                scope.$watchGroup(['cellHeight', 'cellWidth'], onCellSizeChange);
+
+            if (scope.watchSize)
+                scope.$watch(getViewPortSize, onSizeChange);
+
+
+            function onMatrixChange(newValue, oldValue) {
                 if (newValue === undefined) {
                     element.empty();
-                    element.append('<tr><td></td><tr>');
                 } else {
                     render(scope.matrix, [0, 0]);
                 }
-            });
+            }
 
-            viewport.bind('scroll', function onViewportScroll(event) {
+            function onCellSizeChange(newValue, oldValue) {
+                visibleRows = Math.ceil(viewport[0].clientHeight / scope.cellHeight);
+                visibleCols = Math.ceil(viewport[0].clientWidth / scope.cellWidth);
+                var startCell = [
+                    Math.floor(scrollTop / scope.cellHeight),
+                    Math.floor(scrollLeft / scope.cellWidth)
+                ];
+
+                render(scope.matrix, startCell);
+            }
+
+            function getViewPortSize() {
+                return viewport[0].clientHeight + viewport[0].clientWidth;
+            }
+
+            function onSizeChange() {
+                visibleRows = Math.ceil(viewport[0].clientHeight / scope.cellHeight);
+                visibleCols = Math.ceil(viewport[0].clientWidth / scope.cellWidth);
+                var startCell = [
+                    Math.floor(scrollTop / scope.cellHeight),
+                    Math.floor(scrollLeft / scope.cellWidth)
+                ];
+
+                render(scope.matrix, startCell);
+            }
+
+            function onViewportScroll(event) {
+                scrollTop = event.target.scrollTop;
+                scrollLeft = event.target.scrollLeft;
                 var startCell = [
                     Math.floor(event.target.scrollTop / scope.cellHeight),
                     Math.floor(event.target.scrollLeft / scope.cellWidth),
                 ];
 
                 render(scope.matrix, startCell);
-            });
+            }
 
             function render(matrix, startCell) {
                 if (!matrix) return;
 
+                console.debug('is renering ...');
                 element.empty();
 
                 var startRow = startCell[0];
@@ -82,7 +122,7 @@
             for (var r = start[0]; r < end[0]; r++) {
                 var trElement = '<tr>';
                 for (var c = start[1]; c < end[1]; c++) {
-                    trElement += ['<td>', matrix[r][c], '</td>'].join('');
+                    trElement += ['<td>', matrix[r][c] , '</td>'].join('');
                 }
                 template += trElement + '</tr>';
             }
