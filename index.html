@@ -18,7 +18,8 @@
 </head>
 
 <body ng-controller="AppController as vm">
-
+    <a href="https://github.com/klajd/angular-virtual-repeat"><img style="position: absolute; top: 0; right: 0; border: 0; z-index: 9;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+    
     <uib-tabset active="vm.active">
         <uib-tab index="$index" ng-repeat="tab in vm.tabs" heading="{{tab.title}}">
             <div ng-if="vm.active === $index">
