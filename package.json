@@ -4,7 +4,7 @@
   "description": "Bind only visible data to html using viewport.",
   "main": "/dist/ng-virtual-repeat.js",
   "scripts": {
-    "start": "http-server .",
+    "start": "http-server . -o",
     "build": "gulp build"
   },
   "repository": {

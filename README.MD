@@ -30,7 +30,7 @@ vm.matrix = [
 <div class="ng-virtual-repeat-container">
     <div>
         <table>
-            <tbody ng-virtual-repeat="vm.matrix" [cell-height="40"] [cell-width="70"] [watch-size="true"]>
+            <tbody ng-virtual-repeat="vm.matrix" [watch-size="true"]>
             </tbody>
         </table>
     </div>
