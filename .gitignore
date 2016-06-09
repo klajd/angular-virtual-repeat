@@ -8,6 +8,7 @@ npm-debug.log
 
 # editor
 .vscode
+jsconfig.json
 
 # temp
 temp
