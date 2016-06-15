@@ -28,8 +28,21 @@
     "angular": "^1.5.5"
   },
   "devDependencies": {
-    "angular-bootstrap": "^1.3.2",
     "bootstrap": "^3.3.6",
-    "font-awesome": "^4.6.2"
+    "font-awesome": "^4.6.2",
+    "angular-component-demo": "*"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "dist/css/bootstrap.css"
+      ],
+      "dependencies": {}
+    },
+    "font-awesome": {
+      "main": [
+        "css/font-awesome.css"
+      ]
+    }
   }
 }
