@@ -1,8 +1,6 @@
 (function () {
     "use strict";
 
-    angular.module('ngVirtualRepeat', []);
-
     angular
         .module('ngVirtualRepeat')
         .directive('ngVirtualRepeat', NgVirtualRepeatDirective);
