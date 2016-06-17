@@ -1,6 +1,8 @@
 (function () {
     "use strict";
 
+    angular.module('ngVirtualRepeat', []);
+
     angular
         .module('ngVirtualRepeat')
         .directive('ngVirtualRepeat', NgVirtualRepeatDirective);
@@ -53,7 +55,7 @@
                 }, function onSizeChange() {
                     render();
                 });
-         
+
             /**
              * Calculate cell size by faking a dummy td.
              */

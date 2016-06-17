@@ -1,31 +1,14 @@
-<!doctype html>
-<html ng-app="app">
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
 
 <head>
-    <link href="/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css" />
-    <link href="/bower_components/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
-
-    <!-- SCRIPTS -->
-    <script src="/bower_components/angular/angular.js"></script>
-    <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-
-    <!-- COMPONENTS -->
-    <script src="/src/module.js"></script>
-    <script src="/dist/ng-virtual-repeat.js"></script>
-
-    <!-- DEMO -->
-    <script src="app.js"></script>
+    <meta charset="UTF-8">
+    <title>Angular Virtual Repeat</title>
 </head>
 
-<body ng-controller="AppController as vm">
+<body>
 
-    <uib-tabset active="vm.active">
-        <uib-tab index="$index" ng-repeat="tab in vm.tabs" heading="{{tab.title}}">
-            <div ng-if="vm.active === $index">
-                <ng-include src="tab.template"></ng-include>
-            </div>
-        </uib-tab>
-    </uib-tabset>
+    <component-demo config="config"></component-demo>
 
 </body>
 
