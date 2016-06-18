@@ -29,7 +29,6 @@
   },
   "devDependencies": {
     "bootstrap": "^3.3.6",
-    "font-awesome": "^4.6.2",
     "angular-component-demo": "*"
   },
   "overrides": {
@@ -38,11 +37,6 @@
         "dist/css/bootstrap.css"
       ],
       "dependencies": {}
-    },
-    "font-awesome": {
-      "main": [
-        "css/font-awesome.css"
-      ]
     }
   }
 }
