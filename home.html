@@ -1,4 +1,4 @@
-<form name="gridOptionsForm" ng-submit="vm.apply()" ng-init="mo={updateOn: 'submit'}" class="main">
+<form name="gridOptionsForm" ng-submit="vm.apply()" ng-init="mo={updateOn: 'submit'}" class="main" ng-controller="HomeController as vm">
     
     <div class="row">
         <div class="form-group col-md-2">
@@ -36,7 +36,7 @@
         <div class="col-md-12">
             <div class="ng-virtual-repeat-container" ng-style="vm.styles">
                 <div>
-                    <table class="table table-striped">
+                    <table class="table table-striped table-bordered">
                         <tbody ng-virtual-repeat="vm.grid">
                         </tbody>
                     </table>
