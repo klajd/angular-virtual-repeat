@@ -1,0 +1,37 @@
+{
+  "name": "angular-virtual-repeat",
+  "version": "0.1.4",
+  "description": "Bind only visible data to html using viewport.",
+  "main": "/dist/ng-virtual-repeat.js",
+  "scripts": {
+    "start": "http-server . -o",
+    "build": "gulp build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/klajd/angular-virtual-repeat.git"
+  },
+  "keywords": [
+    "angular",
+    "ng-repeat",
+    "ng-virtual-repeat",
+    "repeat",
+    "data",
+    "virtual",
+    "lazy",
+    "viewport"
+  ],
+  "author": "Klajd Diko",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/klajd/angular-virtual-repeat/issues"
+  },
+  "homepage": "https://github.com/klajd/angular-virtual-repeat#readme",
+  "dependencies": {
+    "angular": "^1.5.5"
+  },
+  "devDependencies": {
+    "angular-component-tasks": "0.0.5",
+    "gulp": "^3.9.1"
+  }
+}
