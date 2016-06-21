@@ -9,7 +9,7 @@
     angular.module('app').run(function ($rootScope) {
         $rootScope.config = {
             tabs: [
-                { title: 'Home', template: './demo/home.html' },
+                { title: 'Home', template: 'home.html' },
             ]
         };
     });
